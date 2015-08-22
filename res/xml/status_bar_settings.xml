@@ -52,6 +52,12 @@
         android:title="@string/network_traffic_title" />
 
     <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+        android:key="statusbar_exclamation_marks"
+        android:title="@string/statusbar_exclamation_marks_display"
+        android:summary="@string/statusbar_exclamation_marks_desc"
+        android:defaultValue="true" />
+
+    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
         android:key="status_bar_brightness_control"
         android:title="@string/status_bar_toggle_brightness"
         android:summary="@string/status_bar_toggle_brightness_summary"

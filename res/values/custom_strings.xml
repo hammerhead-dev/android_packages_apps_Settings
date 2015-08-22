@@ -36,5 +36,9 @@
     <string name="show_network_traffic_1500">1500 ms</string>
     <string name="show_network_traffic_2000">2000 ms</string>
 
+    <!-- exclamation marks -->
+    <string name="statusbar_exclamation_marks_display">Display signal bar exclamation marks</string>
+    <string name="statusbar_exclamation_marks_desc">Display or hide exclamation marks on signal bar</string>
+
 </resources>
 

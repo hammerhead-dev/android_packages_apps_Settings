@@ -36,5 +36,9 @@
     <string name="show_network_traffic_1500">1.5 秒</string>
     <string name="show_network_traffic_2000">2 秒</string>
 
+    <!-- exclamation marks -->
+    <string name="statusbar_exclamation_marks_display">显示信号栏感叹号</string>
+    <string name="statusbar_exclamation_marks_desc">显示或隐藏信号栏的感叹号</string>
+
 </resources>
 
