@@ -47,5 +47,9 @@
     <string name="captive_portal_server_notset">未填写验证服务器</string>
     <string name="captive_portal_server_explain">自定义验证服务器，修改完成需要重启或者关闭打开飞行模式</string>
 
+    <!-- hide su icon -->
+    <string name="show_su_icon_title">显示超级用户图标</string>
+    <string name="show_su_icon_summary">当超级用户处于活动状态时在状态栏显示图标</string>
+
 </resources>
 

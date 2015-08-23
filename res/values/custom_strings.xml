@@ -47,5 +47,9 @@
     <string name="captive_portal_server_notset">Not Set Server</string>
     <string name="captive_portal_server_explain">Set captive portal server.You need to reboot your device.</string>
 
+    <!-- hide su icon -->
+    <string name="show_su_icon_title">Show su icon</string>
+    <string name="show_su_icon_summary">Display an icon in status bar when su is active</string>
+
 </resources>
 
