@@ -64,5 +64,9 @@
     <!-- Screenshot sound -->
     <string name="screenshot_sound_title">屏幕截图提示音</string>
 
+    <!-- Headset icon switch -->
+    <string name="show_headset_icon_title">显示耳机图标</string>
+    <string name="show_headset_icon_summary">如果连接了耳机，则显示耳机图标</string>
+
 </resources>
 
