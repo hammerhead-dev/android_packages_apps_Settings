@@ -61,6 +61,7 @@ import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
+import android.text.Spannable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.HardwareRenderer;
@@ -68,7 +69,9 @@ import android.view.IWindowManager;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Switch;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Indexable;
@@ -157,6 +160,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
     private static final String SELECT_LOGD_SIZE_PROPERTY = "persist.logd.size";
     private static final String SELECT_LOGD_DEFAULT_SIZE_PROPERTY = "ro.logd.size";
     private static final String UPDATE_RECOVERY_KEY = "update_recovery";
+    private static final String CAPTIVE_PORTAL_SERVER = "captive_portal_server";
 
     private static final String FORCE_HIGHEND_GFX_KEY = "pref_force_highend_gfx";
     private static final String FORCE_HIGHEND_GFX_PERSIST_PROP = "persist.sys.force_highendgfx";
@@ -221,6 +225,8 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
     private SwitchPreference mAllowMockLocation;
     private SwitchPreference mDebugViewAttributes;
     private SwitchPreference mQuickBoot;
+    private PreferenceScreen mServer;
+    private String mServerText="g.cn";
 
     private PreferenceScreen mPassword;
     private String mDebugApp;
@@ -319,6 +325,9 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
 
         final PreferenceGroup debugDebuggingCategory = (PreferenceGroup)
                 findPreference(DEBUG_DEBUGGING_CATEGORY_KEY);
+
+        mServer = (PreferenceScreen) findPreference(CAPTIVE_PORTAL_SERVER);
+        updateServerTextSummary();
 
         mEnableAdb = findAndInitSwitchPref(ENABLE_ADB);
         mAdbNotify = (SwitchPreference) findPreference(ADB_NOTIFY);
@@ -451,6 +460,17 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
 
         mDevelopmentTools = (PreferenceScreen) findPreference(DEVELOPMENT_TOOLS);
         mAllPrefs.add(mDevelopmentTools);
+    }
+
+    private void updateServerTextSummary() {
+        mServerText = Settings.Global.getString(
+            getActivity().getContentResolver(), Settings.Global.CAPTIVE_PORTAL_SERVER);
+
+        if (TextUtils.isEmpty(mServerText)) {
+            mServer.setSummary(R.string.captive_portal_server_notset);
+        } else {
+            mServer.setSummary(mServerText);
+        }
     }
 
     private ListPreference addListPreference(String prefKey) {
@@ -1786,6 +1806,40 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
             writeDevelopmentShortcutOptions();
         } else if (preference == mKillAppLongpressBack) {
             writeKillAppLongpressBackOptions();
+        } else if (preference == mServer) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+            alert.setTitle(R.string.captive_portal_server);
+            alert.setMessage(R.string.captive_portal_server_explain);
+            LinearLayout parent = new LinearLayout(getActivity());
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT);
+            parent.setLayoutParams(params);
+            // Set an EditText view to get user input
+            final EditText input = new EditText(getActivity());
+            input.setText(TextUtils.isEmpty(mServerText) ? ""
+                    : mServerText);
+            input.setSelection(input.getText().length());
+            params.setMargins(60, 0, 60, 0);
+            input.setLayoutParams(params);
+            parent.addView(input);
+            alert.setView(parent);
+            alert.setPositiveButton(getString(android.R.string.ok),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,
+                                int whichButton) {
+                            String value = ((Spannable) input.getText())
+                                    .toString().trim();
+                            Settings.Global
+                                    .putString(
+                                            getActivity().getContentResolver(),
+                                            Settings.Global.CAPTIVE_PORTAL_SERVER,
+                                            value);
+                            updateServerTextSummary();
+                        }
+                    });
+            alert.setNegativeButton(getString(android.R.string.cancel), null);
+            alert.show();
         } else if (preference == mUpdateRecovery) {
             if (mSwitchBar.isChecked()) {
                 if (mUpdateRecoveryDialog != null) {
