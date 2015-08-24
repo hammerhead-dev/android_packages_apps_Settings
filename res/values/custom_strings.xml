@@ -51,5 +51,15 @@
     <string name="show_su_icon_title">Show su icon</string>
     <string name="show_su_icon_summary">Display an icon in status bar when su is active</string>
 
+    <!--Status bar date -->
+    <string name="status_bar_date_title">Date style</string>
+    <string name="status_bar_date_none">Hidden</string>
+    <string name="status_bar_date_small">Small</string>
+    <string name="status_bar_date_normal">Normal</string>
+    <string name="status_bar_date_format_title">Date format</string>
+    <string name="status_bar_date_format_custom">Custom java format</string>
+    <string name="status_bar_date_string_edittext_title">Must be in DateFormat eg. MM/dd/yy</string>
+    <string name="status_bar_date_string_edittext_summary">Enter java format string</string>
+
 </resources>
 

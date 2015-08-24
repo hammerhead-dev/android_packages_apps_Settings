@@ -51,5 +51,15 @@
     <string name="show_su_icon_title">显示超级用户图标</string>
     <string name="show_su_icon_summary">当超级用户处于活动状态时在状态栏显示图标</string>
 
+    <!--Status bar date -->
+    <string name="status_bar_date_title">日期风格</string>
+    <string name="status_bar_date_none">不显示</string>
+    <string name="status_bar_date_small">小</string>
+    <string name="status_bar_date_normal">正常</string>
+    <string name="status_bar_date_format_title">日期格式</string>
+    <string name="status_bar_date_format_custom">自定义Java格式</string>
+    <string name="status_bar_date_string_edittext_title">例如：MM/dd/yy</string>
+    <string name="status_bar_date_string_edittext_summary">输入Java格式字符串</string>
+
 </resources>
 
