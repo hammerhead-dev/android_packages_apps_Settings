@@ -68,5 +68,8 @@
     <string name="show_headset_icon_title">显示耳机图标</string>
     <string name="show_headset_icon_summary">如果连接了耳机，则显示耳机图标</string>
 
+    <!-- Disable Camera Shutter Sound -->
+    <string name="camera_sounds_title">相机快门提示音</string>
+
 </resources>
 

@@ -66,6 +66,14 @@
             android:title="@string/screenshot_sound_title"
             android:defaultValue="true" />
 
+    <!-- Camera shutter sound -->
+    <SwitchPreference
+            android:key="camera_sounds"
+            android:title="@string/camera_sounds_title"
+            android:switchTextOff=""
+            android:switchTextOn=""
+            android:persistent="false" />
+
     <!-- Dock speaker plays -->
     <com.android.settings.notification.DropDownPreference
             android:key="dock_audio_media"
