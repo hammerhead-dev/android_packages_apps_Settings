@@ -77,10 +77,16 @@
         android:summary="@string/show_su_icon_summary"
         android:defaultValue="true" />
 
-     <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
         android:key="show_headset_icon"
         android:title="@string/show_headset_icon_title"
         android:summary="@string/show_headset_icon_summary"
+        android:defaultValue="false" />
+
+    <SwitchPreference
+        android:key="show_4g"
+        android:title="@string/show_4g_title"
+        android:summary="@string/show_4g_summary"
         android:defaultValue="false" />
 
     <com.android.settings.cyanogenmod.SystemSettingSwitchPreference

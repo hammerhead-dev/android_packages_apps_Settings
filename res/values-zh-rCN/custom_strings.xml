@@ -71,5 +71,9 @@
     <!-- Disable Camera Shutter Sound -->
     <string name="camera_sounds_title">相机快门提示音</string>
 
+    <!-- 4G LTE switch -->
+    <string name="show_4g_title">网络标识显示4G</string>
+    <string name="show_4g_summary">状态栏网络标识用4G来代替LTE</string>
+
 </resources>
 

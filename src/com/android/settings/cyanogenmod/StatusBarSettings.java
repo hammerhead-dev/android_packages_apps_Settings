@@ -25,6 +25,8 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.SwitchPreference;
+import android.preference.PreferenceScreen;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.SearchIndexableResource;
@@ -57,6 +59,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final String STATUS_BAR_DATE_FORMAT = "status_bar_date_format";
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+    private static final String SHOW_4G = "show_4g";
 
     private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
@@ -69,6 +72,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private ListPreference mStatusBarDateFormat;
     private ListPreference mStatusBarBattery;
     private ListPreference mStatusBarBatteryShowPercent;
+    private SwitchPreference mShow4G;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -130,6 +134,15 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         mStatusBarBatteryShowPercent.setOnPreferenceChangeListener(this);
 
         enableStatusBarClockDependents();
+
+        PreferenceScreen prefSet = getPreferenceScreen();
+        mShow4G = (SwitchPreference) findPreference(SHOW_4G);
+        if (Utils.isWifiOnly(getActivity())) {
+            prefSet.removePreference(mShow4G);
+        } else {
+        mShow4G.setChecked((Settings.System.getInt(resolver,
+                Settings.System.SHOW_4G, 0) == 1));
+        }
     }
 
     @Override
@@ -142,6 +155,17 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                         R.array.status_bar_clock_style_entries_rtl));
                 mStatusBarClock.setSummary(mStatusBarClock.getEntry());
         }
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mShow4G) {
+            boolean checked = ((SwitchPreference)preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.SHOW_4G, checked ? 1 : 0);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     @Override
