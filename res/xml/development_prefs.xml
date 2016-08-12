@@ -182,6 +182,17 @@
             android:entries="@array/select_logd_size_titles"
             android:entryValues="@array/select_logd_size_values" />
 
+        <com.android.settings.cyanogenmod.GlobalSettingSwitchPreference
+            android:key="captive_portal_detection_enabled"
+            android:title="@string/captive_portal_detection"
+            android:summary="@string/captive_portal_detection_summary"
+            android:defaultValue="true"/>
+
+        <PreferenceScreen
+            android:key="captive_portal_server"
+            android:title="@string/captive_portal_server"
+            android:dependency="captive_portal_detection_enabled" />
+
     </PreferenceCategory>
 
     <PreferenceCategory android:key="debug_networking_category"

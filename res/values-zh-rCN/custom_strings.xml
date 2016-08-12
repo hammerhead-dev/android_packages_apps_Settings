@@ -33,5 +33,12 @@
     <string name="show_network_traffic_1500">1.5 秒</string>
     <string name="show_network_traffic_2000">2 秒</string>
 
+    <!-- Captive Portal -->
+    <string name="captive_portal_detection">网络状况检测</string>
+    <string name="captive_portal_detection_summary">如果状态栏有感叹号，可关闭网络状况检测</string>
+    <string name="captive_portal_server">自定义验证服务器</string>
+    <string name="captive_portal_server_notset">未填写验证服务器</string>
+    <string name="captive_portal_server_explain">自定义验证服务器，修改完成需要重启或者关闭打开飞行模式</string>
+
 </resources>
 
