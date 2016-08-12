@@ -49,6 +49,12 @@
             android:title="@string/volume_adjust_sounds_title"
             android:defaultValue="true" />
 
+    <!-- Screenshot sound -->
+    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="screenshot_sound"
+            android:title="@string/screenshot_sound_title"
+            android:defaultValue="true" />
+
     <!-- Dock speaker plays -->
     <com.android.settings.DropDownPreference
             android:key="dock_audio_media"

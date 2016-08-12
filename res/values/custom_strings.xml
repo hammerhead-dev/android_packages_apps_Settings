@@ -44,5 +44,8 @@
     <string name="show_su_icon_title">Show su icon</string>
     <string name="show_su_icon_summary">Display an icon in status bar when su is active</string>
 
+    <!-- Screenshot sound -->
+    <string name="screenshot_sound_title">Screenshot sound</string>
+
 </resources>
 

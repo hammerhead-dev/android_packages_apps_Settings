@@ -44,5 +44,8 @@
     <string name="show_su_icon_title">显示超级用户图标</string>
     <string name="show_su_icon_summary">当超级用户处于活动状态时在状态栏显示图标</string>
 
+    <!-- Screenshot sound -->
+    <string name="screenshot_sound_title">屏幕截图提示音</string>
+
 </resources>
 
