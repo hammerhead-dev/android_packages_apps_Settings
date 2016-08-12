@@ -47,5 +47,8 @@
     <!-- Screenshot sound -->
     <string name="screenshot_sound_title">Screenshot sound</string>
 
+    <!-- Disable Camera Shutter Sound -->
+    <string name="camera_sounds_title">Camera shutter sound</string>
+
 </resources>
 

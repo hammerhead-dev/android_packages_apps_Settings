@@ -47,5 +47,8 @@
     <!-- Screenshot sound -->
     <string name="screenshot_sound_title">屏幕截图提示音</string>
 
+    <!-- Disable Camera Shutter Sound -->
+    <string name="camera_sounds_title">相机快门提示音</string>
+
 </resources>
 

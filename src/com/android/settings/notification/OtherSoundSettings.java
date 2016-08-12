@@ -32,6 +32,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.os.SystemProperties;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
@@ -53,7 +54,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OtherSoundSettings extends SettingsPreferenceFragment implements Indexable {
+public class OtherSoundSettings extends SettingsPreferenceFragment implements Indexable, Preference.OnPreferenceChangeListener {
     private static final String TAG = "OtherSoundSettings";
 
     private static final int DEFAULT_OFF = 0;
@@ -68,6 +69,8 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
     private static final int DOCK_AUDIO_MEDIA_ENABLED = 1;
     private static final int DEFAULT_DOCK_AUDIO_MEDIA = DOCK_AUDIO_MEDIA_DISABLED;
 
+    private static final String PROP_CAMERA_SOUND = "persist.sys.camera-sound";
+    private static final String KEY_CAMERA_SOUNDS = "camera_sounds";
     private static final String KEY_DIAL_PAD_TONES = "dial_pad_tones";
     private static final String KEY_SCREEN_LOCKING_SOUNDS = "screen_locking_sounds";
     private static final String KEY_CHARGING_SOUNDS = "charging_sounds";
@@ -246,6 +249,10 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
         for (SettingPref pref : PREFS) {
             pref.init(this);
         }
+
+        final SwitchPreference mCameraSounds = (SwitchPreference) findPreference(KEY_CAMERA_SOUNDS);
+        mCameraSounds.setChecked(SystemProperties.getBoolean(PROP_CAMERA_SOUND, true));
+        mCameraSounds.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -281,6 +288,17 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
 
     private static boolean hasDockSettings(Context context) {
         return context.getResources().getBoolean(R.bool.has_dock_settings);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object o) {
+        final String key = preference.getKey();
+        if (KEY_CAMERA_SOUNDS.equals(key)) {
+            final String value = ((Boolean) o) ? "1" : "0";
+            SystemProperties.set(PROP_CAMERA_SOUND, value);
+            return true;
+        }
+        return false;
     }
 
     // === Callbacks ===
